@@ -22,28 +22,24 @@ public class VendasRepositoryTest {
 
   @Test
   public void verifySavedSell() {
-    int value = 1;
-    Long longValue = Long.valueOf(value);
     LocalDate date = LocalDate.now();
-    Vendas sell = Vendas.builder().numeroVenda(longValue).data_venda(date).build();
+    Vendas venda = Vendas.builder().data_venda(date).build();
 
-    Vendas persisted = repository.save(sell);
+    Vendas salvo = repository.save(venda);
 
-    Assertions.assertNotNull(persisted);
-    Assertions.assertEquals(sell.getNumeroVenda(), persisted.getNumeroVenda());
-    Assertions.assertEquals(sell.getData_venda(), persisted.getData_venda());
+    Assertions.assertNotNull(salvo);
+    Assertions.assertEquals(venda.getNumeroVenda(), salvo.getNumeroVenda());
+    Assertions.assertEquals(venda.getData_venda(), salvo.getData_venda());
   }
 
   @Test
-  public void verificaSeSalvaVendaSemData() {
-    int value = 1;
-    Long longValue = Long.valueOf(value);
-    Vendas sell = Vendas.builder().numeroVenda(longValue).build();
+  public void verifySavedSellWithoutDate() {
+    Vendas venda = Vendas.builder().build();
 
-    Vendas persisted = repository.save(sell);
+    Vendas salvo = repository.save(venda);
 
-    Assertions.assertNotNull(persisted);
-    Assertions.assertEquals(sell.getNumeroVenda(), persisted.getNumeroVenda());
-    Assertions.assertEquals(sell.getData_venda(), persisted.getData_venda());
+    Assertions.assertNotNull(salvo);
+    Assertions.assertEquals(venda.getNumeroVenda(), salvo.getNumeroVenda());
+    Assertions.assertEquals(venda.getData_venda(), salvo.getData_venda());
   }
 }
